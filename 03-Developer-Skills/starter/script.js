@@ -98,9 +98,9 @@ const x = '23';
 const calcAge = birthYear => 2037 - birthYear;
 
 console.log(calcAge(1992));
-*/
 
-// PROBLEM:
+
+// PROBLEM #1:
 // We work for a company building a smart home thermometer. Our most
 // recent task is this: "Given an array of temperatures of one day,
 // calculate the temperature amplitude. Keep in mind that sometimes
@@ -121,10 +121,134 @@ const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 
 const calcTempAmplitude = function (temps) {
   let max = temps[0];
+  let min = temps[0];
   for (let i = 0; i < temps.length; i++) {
-    if (temps[i] > max) max = temps[i];
+    const curTemp = temps[i];
+
+    if (typeof curTemp !== 'number') continue;
+
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
   }
-  console.log(max);
+  console.log(max, min);
+  return max - min;
 };
-calcTempAmplitude([3, 7, 4]);
-console.log(calcTempAmplitude([3, 7, 4]));
+const amplitude = calcTempAmplitude(temperatures);
+console.log(amplitude);
+
+// PROBLEM #2:
+// Function should now recieve 2 arrays of temperatures
+
+// 1) Understanding the problem
+// - with 2 arrays, shoudld we implement functionality twice? No! Just merge two arrays
+
+// 2) Breaking up into sub-problems
+// -  Merge 2 arrays
+
+const calcTempAmplitudeNew = function (t1, t2) {
+  const temps = t1.concat(t2);
+
+  let max = temps[0];
+  let min = temps[0];
+  for (let i = 0; i < temps.length; i++) {
+    const curTemp = temps[i];
+
+    if (typeof curTemp !== 'number') continue;
+
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min;
+};
+const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
+console.log(amplitudeNew);
+
+// const array1 = ['a','b','c'];
+// const array2 = ['d','e','f'];
+// const array3 = array1.concat(array2);
+
+
+/////////////////////////////////////////
+// Debugging(Fixing Errors)
+
+/// :(((((_._))))): \\\
+
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+
+    // C) FIX
+    // value: Number(prompt('Degrees celsius:')),
+    value: 10,
+  };
+
+  // B) FIND
+  console.table(measurement);
+
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+// A) IDENTIFY
+console.log(measureKelvin());
+
+// Using a Debugger
+const calcTempAmplitudeBug = function (t1, t2) {
+  const temps = t1.concat(t2);
+  console.log(temps);
+
+  let max = 0;
+  let min = 0;
+  for (let i = 0; i < temps.length; i++) {
+    const curTemp = temps[i];
+
+    if (typeof curTemp !== 'number') continue;
+
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min;
+};
+const amplitudeBug = calcTempAmplitudeBug([3, 5, 1], [9, 4, 5]);
+// A) IDENTIFY
+console.log(amplitudeBug);
+//
+
+// CODING CHALLENGE
+
+/* Given an array of forcesated max temp,
+  the thermometer displays  a string with these temperatures.
+
+  Example : [17, 21, 23] " 17c day 1 21 c day 2 23c day 3"
+
+  Create a function `printForecst` which takes in an
+  array 'arr' and logs a string likte hte abovce ot the console
+
+  Use the problem solving framework: UNDerstand the problem
+  and break it up into sub-problems!
+
+  TEST DATA 1: [17,21, 23]
+  TEST DATA 2: [12, -5, 0, 4]
+
+  UNDERSTAND:
+      - how to make function accomadate for 3 or 5 values (for loop also use array.length)
+      - how to add string part each time (if function with variables using ${})
+      - 
+
+  */
+
+const TD1 = [17, 21, 23];
+const TD2 = [12, -5, 0, 4];
+
+const printForecast = function (arr) {
+  let str = '... ';
+
+  for (let i = 0; i < arr.length; i++) {
+    str += `${arr[i]}C in ${i + 1} days ...`;
+  }
+  console.log(str);
+};
+
+printForecast(TD1);
