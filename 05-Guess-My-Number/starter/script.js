@@ -1,10 +1,9 @@
 'use strict';
 
-/*
 console.log(document.querySelector('.message').textContent);
 
 document.querySelector('.message').textContent = 'Correct Number 🎉';
-
+/*
 // how does this work the code that chagnes the content of the text
 // is after the console.log this goes against my coding logic that i
 // learned pIEWFAL;SDJFG;Lksadjf;owiJEG;LQHRG;LAWJSD;FGLAKSJD
@@ -24,10 +23,10 @@ document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
 
-document.querySelector('.check').addEventListener('click', function () {
-  const guess = Number(document.querySelector('.guess').value);
-  console.log(guess, typeof guess);
+// document.querySelector('.check').addEventListener('click', function () {
+//   const guess = Number(document.querySelector('.guess').value);
+//   console.log(guess, typeof guess);
 
-  if (!guess) {
-  }
-});
+//   if (!guess) {
+//   }
+// });
